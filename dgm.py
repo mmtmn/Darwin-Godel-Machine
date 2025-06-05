@@ -143,16 +143,16 @@ class DarwinGodelMachine:
         return new_record
 
     def copy_codebase(self, src_dir: str, dst_dir: str):
-        """
-        Copy all files from src_dir to dst_dir.
-        """
         for item in os.listdir(src_dir):
+            if item == ".git":
+                continue  # Skip git internals to avoid permission errors
             s = os.path.join(src_dir, item)
             d = os.path.join(dst_dir, item)
             if os.path.isdir(s):
                 shutil.copytree(s, d, dirs_exist_ok=True)
             else:
                 shutil.copy2(s, d)
+
 
     def save_agent_code(self, record: AgentRecord, name: str):
         """
@@ -161,14 +161,24 @@ class DarwinGodelMachine:
         save_path = os.path.join(self.archive_save_path, f"{name}")
         os.makedirs(save_path, exist_ok=True)
 
-        # Copy from the agent's code directory
         agent_dir = record.agent.git_tempdir
         code_dest = os.path.join(save_path, "code")
-        shutil.copytree(agent_dir, code_dest, dirs_exist_ok=True)
+        os.makedirs(code_dest, exist_ok=True)
 
-        # Save performance in a text file
+        # 👇 Skip .git folder while copying
+        for item in os.listdir(agent_dir):
+            if item == ".git":
+                continue
+            s = os.path.join(agent_dir, item)
+            d = os.path.join(code_dest, item)
+            if os.path.isdir(s):
+                shutil.copytree(s, d, dirs_exist_ok=True)
+            else:
+                shutil.copy2(s, d)
+
         with open(os.path.join(save_path, "performance.txt"), "w") as f:
             f.write(f"Performance: {record.performance:.4f}\n")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Run the Darwin Gödel Machine.")
