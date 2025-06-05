@@ -1,11 +1,9 @@
----
-
 # Darwin Gödel Machine
 
 **An open-ended, self-improving AI system that evolves its own source code using a local LLM.**
 Built for autonomy, reflection, and code evolution — all running locally via [Ollama](https://ollama.com) and models like Llama 3.
 
----
+
 
 ## Overview
 
