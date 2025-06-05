@@ -9,7 +9,8 @@ import uuid
 from coding_agent import AgenticSystem
 from utils.logger_utils import safe_log
 from utils.git_utils import init_repo, commit_all, get_current_commit
-from utils.eval_utils import evaluate_agent, get_performance_score, AgentRecord
+from utils.eval_utils import evaluate_agent, AgentRecord
+
 
 # Darwin Gödel Machine
 # (A population-based open-ended loop for self-improving coding agents.)
@@ -184,6 +185,8 @@ def main():
     # Prepare initial code directory
     init_repo_dir = tempfile.mkdtemp(prefix="dgm_init_agent_")
     init_repo(init_repo_dir)
+    with open(os.path.join(init_repo_dir, "agent.py"), "w") as f:
+        f.write("# Initial agent code\n")
     # Commit initial
     commit_all(init_repo_dir, "Initial commit - blank agent codebase")
 

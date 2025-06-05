@@ -5,10 +5,10 @@ import threading
 from typing import Optional, List, Any
 
 from llm_withtools import (
-    CLAUDE_MODEL,
-    OPENAI_MODEL,
+    OLLAMA_MODEL,
     chat_with_agent
 )
+
 from utils.git_utils import (
     reset_to_commit,
     get_current_commit,
@@ -49,7 +49,7 @@ class AgenticSystem:
 
         # If the agent is self-improving, we might choose a different model.
         # But here we keep it simple and use Claude or OpenAI based on a config:
-        self.code_model = CLAUDE_MODEL if self_improve else OPENAI_MODEL
+        self.code_model = OLLAMA_MODEL
 
         # Setup logger
         self.logger = setup_logger(chat_history_file)
