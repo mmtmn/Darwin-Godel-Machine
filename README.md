@@ -19,7 +19,7 @@ The Darwin Gödel Machine (DGM) is a system that:
 
 ## Features
 
-* Fully local inference via Ollama + Llama3
+* Fully local inference via Ollama + any of the latest Ollama models
 * Code-editing agents powered by foundation models
 * Archive of evolving agents (each with performance and full source)
 * Open-ended exploration and branching from past agents
