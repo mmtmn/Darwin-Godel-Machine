@@ -45,8 +45,9 @@ The Darwin Gödel Machine (DGM) is a system that:
 1. **Clone the repo**
 
    ```bash
-   git clone https://github.com/yourusername/darwin-godel-machine.git
-   cd darwin-godel-machine
+   git clone git@github.com:mmtmn/Darwin-Godel-Machine.git
+
+   cd Darwin-Godel-Machine
    ```
 
 2. **Create virtual environment**
@@ -59,7 +60,7 @@ The Darwin Gödel Machine (DGM) is a system that:
 3. **Install dependencies**
 
    ```bash
-   pip install -r requirements.txt
+   pip install ...
    ```
 
 4. **Export environment variables (optional)**
